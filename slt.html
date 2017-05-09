@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width: 1000px;
+				height: 300px;
+				position: relative;
+			}
+			#box img{
+				width: 300px;
+				float: left;
+				height: 300px;
+				display: none;
+			}
+			
+			
+			#box .tp1{
+				
+				display: block;
+			}
+			#z{
+				width: 50px;
+				height: 50px;
+				border: 2px solid #ccc;
+				opacity: 0.5;
+				font-size: 20px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 50px;
+				background: orange;
+				position: absolute;
+				left:0;
+				top: 120px;
+			}
+			#y{
+				width: 50px;
+				height: 50px;
+				border: 2px solid #ccc;
+				opacity: 0.5;
+				font-size: 20px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 50px;
+				background: orange;
+				position: absolute;
+				left:245px;
+				top: 120px;
+			}
+			#yq{
+				width: 300px;
+				height: 50px;
+			}
+			#yq1{
+				width: 10px;
+				height: 10px;
+				border: 1px solid #ccc;
+				background: blue;
+				border-radius: 50px;
+				margin-left: 100px;
+				margin-top: 10px;
+				float: left;
+				position: relative;
+			}
+			#yq2{
+				width: 10px;
+				height: 10px;
+				border: 1px solid #ccc;
+				border-radius: 50px;
+				background: red;
+				float: left;
+				margin-top: 10px;
+				margin-left: 10px;
+				position: relative;
+			}
+			#yq3{
+				width: 10px;
+				height: 10px;
+				border: 1px solid #ccc;
+				border-radius: 50px;
+				background: red;
+				float: left;
+				margin: 10px;
+				position: relative;
+			}
+			#yq img{
+				width: 50px;
+				height: 50px;
+				display: none;
+				position: absolute;
+				left: -25px;
+				top: -60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img class="tp1" src="img/2.jpg" alt="" />
+			<img src="img/3.jpg" alt="" />
+			<img src="img/4.jpg" alt="" />
+			<p id="z">&lt;</p>
+			<p id="y">&gt;</p>
+		</div>
+		<div id="yq">
+			<div id="yq1">
+				<img class="img1" src="img/2.jpg" alt="" />
+			</div>
+			<div id="yq2">
+				<img class="img2" src="img/3.jpg" alt="" />
+			</div>
+			<div id="yq3">
+				<img class="img3" src="img/4.jpg" alt="" />
+			</div>
+		</div>
+		<script>
+			var oBox = document.getElementById("box");
+			var oImg = oBox.getElementsByTagName("img");
+			var dDiv = document.getElementById("yq");
+			var oXdiv = dDiv.getElementsByTagName("div");
+			var cd = oImg.length;
+			var n = 0;
+			//点击小圆点出现相应的图片
+			for(i = 0 ; i<cd;i ++){
+				oXdiv[i].index = i;
+				oXdiv[i].onclick = function(){
+					n = this.index;
+					//大清洗
+					for(i = 0 ; i<cd;i ++){
+						oImg[i].className = "";
+						oXdiv[i].style.background = "red";
+					}
+					oImg[this.index].className = "tp1";
+					this.style.background = "blue";
+				}
+			}
+			//移入小圆点小图出现，移出图片消失
+			var tt = dDiv.getElementsByTagName("img");
+			for(i = 0 ; i<cd;i ++){
+				oXdiv[i].index = i;
+				oXdiv[i].onmouseover = function(){
+					tt[this.index].style.display = "block";
+				}
+				oXdiv[i].onmouseout = function(){
+					tt[this.index].style.display = "none";
+				}
+			}
+			//点击右边按钮
+			var yan = document.getElementById("y");
+			var zan = document.getElementById("z");
+			yan.onclick = function(){
+				n++;
+				if(n==3){
+					n=0;
+				}
+				//大清洗
+				for(i = 0 ; i<cd;i ++){
+					oImg[i].style.display = "none" ;
+					oXdiv[i].style.background = "red";
+				}
+				oImg[n].style.display = "block" ;
+				oXdiv[n].style.background = "blue";
+			}
+			zan.onclick = function(){
+				n--;
+				if(n==-1){
+					n=2;
+				}
+				//大清洗
+				for(i = 0 ; i<cd;i ++){
+					oImg[i].style.display = "none" ;
+					oXdiv[i].style.background = "red";
+				}
+				oImg[n].style.display = "block" ;
+				oXdiv[n].style.background = "blue";
+			}
+		</script>
+	</body>
+</html>
